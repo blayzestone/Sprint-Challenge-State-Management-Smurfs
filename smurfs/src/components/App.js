@@ -4,11 +4,11 @@ import "./App.css";
 
 import { fetchSmurfs } from '../actions/smurfsActions';
 
+import SmurfList from './SmurfList';
 import CreateSmurfForm from './CreateSmurfForm';
 
 const App = () => {
   const isFetching = useSelector(state => state.smurfs.isFetching);
-  const smurfs = useSelector(state => state.smurfs.smurfsList);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,17 +18,7 @@ const App = () => {
     return (
       <div className="App">
         { isFetching && <div>Fetching Smurfs...</div> }
-        {
-          smurfs.map(smurf => {
-            return (
-              <ul>
-                <li>{smurf.name}</li>
-                <li>{smurf.age}</li>
-                <li>{smurf.height}</li>
-              </ul>
-            );
-          })
-        }
+        <SmurfList />
         <CreateSmurfForm />
       </div>
     );

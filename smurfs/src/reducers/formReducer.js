@@ -1,7 +1,7 @@
-import { UPDATE_FORM_VALUES } from '../actions/formActions';
+import { UPDATE_FORM_VALUES, FILL_FORM, SUBMIT_FORM } from '../actions/formActions';
 
 const initialState = {
-  id: 0,
+  id: null,
   name: "",
   age: "",
   height: "",
@@ -14,6 +14,10 @@ export const formReducer = (state = initialState, action) => {
         ...state,
         [action.payload.name]: action.payload.value,
       }
+    case SUBMIT_FORM:
+      return initialState;
+    case FILL_FORM:
+      return action.payload;
     default:
       return state;
   } 

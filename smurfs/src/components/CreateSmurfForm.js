@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
 
 import { createSmurf, updateSmurf } from '../actions/smurfsActions';
-import { updateFormValues } from '../actions/formActions';
+import { updateFormValues, submitForm } from '../actions/formActions';
 
 const CreateSmurfForm = () => {
   const formValues = useSelector(state => state.formValues);
@@ -18,15 +18,16 @@ const CreateSmurfForm = () => {
   const submitHandler = evt => {
     evt.preventDefault();
 
-    if (formValues.editTargetId === null) {
+    if (formValues.id === null) {
       const smurf = {
         ...formValues,
         id: Date.now(),
       }
-      return dispatch(createSmurf(smurf));
+      dispatch(createSmurf(smurf));
     } else {
-      return dispatch(updateSmurf(formValues));
+      dispatch(updateSmurf(formValues));
     }
+    return dispatch(submitForm());
   }
 
   return (
