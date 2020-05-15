@@ -4,6 +4,8 @@ import "./App.css";
 
 import { fetchSmurfs } from '../actions/smurfsActions';
 
+import CreateSmurfForm from './CreateSmurfForm';
+
 const App = () => {
   const isFetching = useSelector(state => state.smurfs.isFetching);
   const smurfs = useSelector(state => state.smurfs.smurfsList);
@@ -27,6 +29,7 @@ const App = () => {
             );
           })
         }
+        <CreateSmurfForm />
       </div>
     );
 }

@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const apiUrl = "http://localhost:3333/smurfs";
 export const FETCH_SMURFS_START = "FETCH_SMURFS_START";
 export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS";
 export const FETCH_SMURFS_FAILURE = "FETCH_SMURFS_FAILURE";
-const apiUrl = "http://localhost:3333/smurfs";
+export const CREATE_SMURF = "CREATE_SMURF";
+
 
 
 export const fetchSmurfs = () => dispatch => {
@@ -16,4 +18,8 @@ export const fetchSmurfs = () => dispatch => {
     .catch(err => {
       console.log(err);
     });
+}
+
+export const createSmurf = smurf => dispatch => {
+  return dispatch({ type: CREATE_SMURF, payload: smurf });
 }
