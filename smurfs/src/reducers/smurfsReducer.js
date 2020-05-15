@@ -25,10 +25,7 @@ export const smurfsReducer = (state = initialState, action) => {
     case CREATE_SMURF:
       return {
         ...state,
-        smurfsList: [
-          ...state.smurfsList,
-          action.payload,
-        ],
+        smurfsList: action.payload,
       }
     default:
       return state;

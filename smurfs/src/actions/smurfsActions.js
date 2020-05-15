@@ -21,5 +21,9 @@ export const fetchSmurfs = () => dispatch => {
 }
 
 export const createSmurf = smurf => dispatch => {
-  return dispatch({ type: CREATE_SMURF, payload: smurf });
+  axios.post(apiUrl, smurf)
+    .then(res => {
+      console.log(res.data);
+      return dispatch({ type: CREATE_SMURF, payload: res.data });
+    });
 }
