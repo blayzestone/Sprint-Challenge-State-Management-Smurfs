@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector, } from 'react-redux';
 
 import { createSmurf } from '../actions/smurfsActions';
+import { updateFormValues } from '../actions/formActions';
 
 const CreateSmurfForm = () => {
-  const [formValues, setFormValues] = useState({
-    name: "",
-    age: "",
-    height: "",
-  });
+  const formValues = useSelector(state => state.formValues);
   const dispatch = useDispatch();
 
   const inputHandler = evt => {
     const name = evt.target.name;
     const value = evt.target.value;
 
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
+    dispatch(updateFormValues(name, value));
   }
 
   const submitHandler = evt => {
