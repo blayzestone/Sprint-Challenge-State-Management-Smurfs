@@ -5,6 +5,7 @@ export const FETCH_SMURFS_START = "FETCH_SMURFS_START";
 export const FETCH_SMURFS_SUCCESS = "FETCH_SMURFS_SUCCESS";
 export const FETCH_SMURFS_FAILURE = "FETCH_SMURFS_FAILURE";
 export const CREATE_SMURF = "CREATE_SMURF";
+export const UPDATE_SMURF = "UPDATE_SMURF";
 
 
 
@@ -25,5 +26,12 @@ export const createSmurf = smurf => dispatch => {
     .then(res => {
       console.log(res.data);
       return dispatch({ type: CREATE_SMURF, payload: res.data });
+    });
+}
+
+export const updateSmurf = smurf => dispatch => {
+  axios.put(`${apiUrl}/${smurf.id}`, smurf)
+    .then(res => {
+      return dispatch({ type: UPDATE_SMURF, payload: smurf });
     });
 }

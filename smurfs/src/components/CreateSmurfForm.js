@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector, } from 'react-redux';
 
-import { createSmurf } from '../actions/smurfsActions';
+import { createSmurf, updateSmurf } from '../actions/smurfsActions';
 import { updateFormValues } from '../actions/formActions';
 
 const CreateSmurfForm = () => {
@@ -16,13 +16,17 @@ const CreateSmurfForm = () => {
   }
 
   const submitHandler = evt => {
-    const smurf = {
-      ...formValues,
-      id: Date.now(),
-    }
-    
     evt.preventDefault();
-    dispatch(createSmurf(smurf));
+
+    if (formValues.editTargetId === null) {
+      const smurf = {
+        ...formValues,
+        id: Date.now(),
+      }
+      return dispatch(createSmurf(smurf));
+    } else {
+      return dispatch(updateSmurf(formValues));
+    }
   }
 
   return (

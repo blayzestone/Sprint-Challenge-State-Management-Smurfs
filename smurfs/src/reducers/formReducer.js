@@ -1,7 +1,7 @@
 import { UPDATE_FORM_VALUES } from '../actions/formActions';
 
 const initialState = {
-  editTargetId: null,
+  id: 0,
   name: "",
   age: "",
   height: "",
